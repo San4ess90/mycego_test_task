@@ -1,0 +1,14 @@
+{% extends 'diskviewer/base.html' %}
+
+{% block title %}Yandex Disk Viewer{% endblock %}
+
+{% block content %}
+
+    <h2>Введите публичную ссылку Yandex Disk</h2>
+    <form action="{% url 'list_files' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="public_key" placeholder="Публичная ссылка" required>
+        <button type="submit">Показать файлы</button>
+    </form>
+
+{% endblock %}

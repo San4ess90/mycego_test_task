@@ -1,0 +1,20 @@
+{% extends 'diskviewer/base.html' %}
+
+{% block title %}File List{% endblock %}
+
+{% block content %}
+
+    <h2>Список файлов и папок</h2>
+
+    {% if current_path %}
+        <p>Текущий путь: {{ current_path }}</p>
+    {% endif %}
+
+    <ul>
+        {% for item in files %}
+            {% include 'diskviewer/file_item.html' with item=item public_key=public_key %}
+        {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}">На главную</a>
+
+{% endblock %}
