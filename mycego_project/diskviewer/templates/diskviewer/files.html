@@ -5,6 +5,17 @@
 {% block content %}
 
     <h2>Список файлов и папок</h2>
+      <form action="{% url 'list_files' %}" method="get">
+        <input type="hidden" name="public_key" value="{{ public_key }}">
+        <input type="hidden" name="path" value="{{ current_path }}">
+
+        <label for="file_type">Фильтр по типу:</label>
+        <select name="file_type" id="file_type" onchange="this.form.submit()">
+            <option value="all" {% if selected_file_type == 'all' %}selected{% endif %}>Все</option>
+            <option value="document" {% if selected_file_type == 'document' %}selected{% endif %}>Документы</option>
+            <option value="image" {% if selected_file_type == 'image' %}selected{% endif %}>Изображения</option>
+        </select>
+    </form>
 
     {% if current_path %}
         <p>Текущий путь: {{ current_path }}</p>
